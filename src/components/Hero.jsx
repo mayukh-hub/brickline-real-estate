@@ -1,38 +1,35 @@
-import { useState, useEffect } from "react";
 
+import { useState, useEffect } from "react";
 import {
-  ArrowLeft,
-  ArrowRight,
   ChevronRight,
   Phone,
-  MoveUpRight,
 } from "lucide-react";
 
 const slides = [
   {
     category: "Signature home",
     title: "Your high-end Haven awaits",
-    tag: "Heat resistance",
     description:
-      "Discover lavish interiors, curated design, premium amenities, and personalized services that define an elevated lifestyle.",
+      "Discover lavish interiors, curated design, and exceptional properties created for modern living.",
+    tag: "Heat resistance",
     image:
       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=90",
   },
   {
     category: "Luxury residence",
     title: "Architecture meets modern living",
-    tag: "Modern design",
     description:
       "Experience exceptional architecture, beautiful surroundings, and thoughtfully designed spaces for your family.",
+    tag: "Modern design",
     image:
       "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2000&q=90",
   },
   {
     category: "Premium property",
     title: "Find your perfect living space",
-    tag: "Premium living",
     description:
-      "Explore extraordinary properties designed to bring comfort, elegance, and inspiration into everyday life.",
+      "Explore extraordinary homes with elegant interiors, premium amenities, and timeless architecture.",
+    tag: "Premium living",
     image:
       "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=2000&q=90",
   },
@@ -41,62 +38,46 @@ const slides = [
 function Hero() {
   const [activeSlide, setActiveSlide] = useState(0);
 
-  // Automatic slider
+  // Automatic background image slider
   useEffect(() => {
-    const timer = setInterval(() => {
+    const interval = setInterval(() => {
       setActiveSlide((prev) => (prev + 1) % slides.length);
     }, 5000);
 
-    return () => clearInterval(timer);
+    return () => clearInterval(interval);
   }, []);
-
-  // Next slide
-  const nextSlide = () => {
-    setActiveSlide((prev) => (prev + 1) % slides.length);
-  };
-
-  // Previous slide
-  const prevSlide = () => {
-    setActiveSlide(
-      (prev) => (prev - 1 + slides.length) % slides.length
-    );
-  };
 
   const currentSlide = slides[activeSlide];
 
   return (
     <section
-  id="home"
-  className="
-    relative
-    z-20
-    isolate
-    mb-0
-    overflow-visible
-    bg-[#d9d9db]
-    text-white
-    min-h-180
-    md:min-h-195
-  "
->
-
-      {/* Background Image Slider */}
+      id="home"
+      className="
+        relative
+        z-10
+        h-170
+        overflow-visible
+        bg-[#dedee0]
+        text-white
+        sm:h-180
+        md:h-165
+      "
+    >
+      {/* Background Images */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
-
         {slides.map((slide, index) => (
           <img
             key={slide.image}
             src={slide.image}
-            alt="Luxury real estate property"
+            alt="Luxury property"
             className={`
               absolute inset-0
               h-full w-full
               object-cover
               object-center
               transition-all
-              duration-1500
+              duration-1000
               ease-in-out
-
               ${
                 activeSlide === index
                   ? "scale-100 opacity-100"
@@ -109,396 +90,262 @@ function Hero() {
         {/* Dark Overlay */}
         <div className="
           absolute inset-0
+          bg-black/40
+        " />
+
+        <div className="
+          absolute inset-0
           bg-linear-to-r
-          from-black/70
-          via-black/35
+          from-black/55
+          via-black/20
           to-black/10
         " />
 
         <div className="
           absolute inset-0
           bg-linear-to-t
-          from-black/40
+          from-black/60
           via-transparent
           to-black/20
         " />
-
       </div>
 
       {/* Main Hero Content */}
       <div className="
         relative
+        z-10
         mx-auto
-        flex
-        min-h-180
-        max-w-375
-        items-center
+        max-w-350
         px-5
-        pb-40
         pt-28
-
         sm:px-8
-
-        md:min-h-195
+        sm:pt-32
+        md:flex
+        md:h-full
+        md:items-center
         md:px-10
-        md:pb-0
         md:pt-0
-
         lg:px-16
       ">
-
-        <div className="w-full max-w-2xl">
+        <div className="max-w-162.5">
 
           {/* Category */}
           <div className="mb-6 flex items-center gap-3">
+            <span className="h-0.5 w-8 bg-[#e9502e]" />
 
-            <span className="h-px w-8 bg-orange-500" />
-
-            <span className="text-xs tracking-wider text-white/90">
+            <span className="text-xs tracking-wide text-white/90">
               {currentSlide.category}
             </span>
-
           </div>
 
           {/* Heading */}
           <h1
             key={currentSlide.title}
             className="
-              max-w-2xl
-              text-4xl
+              max-w-162.5
+              text-[42px]
               font-light
-              leading-[1.08]
+              leading-[1.12]
               tracking-tight
-              transition-all
-              duration-700
-
               sm:text-5xl
-              md:text-7xl
-              lg:text-[82px]
+              md:text-6xl
+              lg:text-[68px]
             "
           >
             {currentSlide.title}
-
-            <span className="text-orange-400">.</span>
-
+            <span className="text-[#e9502e]">.</span>
           </h1>
 
-          {/* Tag */}
-          <div className="mt-7">
-
+          {/* Design Tag */}
+          <div className="mt-6">
             <span className="
-              border
-              border-white/40
-              bg-black/20
-              px-3
-              py-2
+              inline-block
+              border border-white/60
+              px-3 py-2
               text-[10px]
               tracking-wider
-              backdrop-blur-sm
             ">
               {currentSlide.tag}
             </span>
-
           </div>
 
           {/* Description */}
           <p className="
-            mt-7
-            max-w-md
+            mt-6
+            max-w-115
             text-sm
             leading-6
             text-white/85
+            sm:text-base
           ">
             {currentSlide.description}
           </p>
 
-          {/* Hero Buttons */}
-          <div className="mt-10 flex flex-wrap items-center gap-5">
+          {/* Find Property Button */}
+          <a
+            href="#projects"
+            className="
+              group
+              mt-8
+              inline-flex
+              items-center
+              gap-4
+              bg-white
+              px-5 py-3.5
+              text-[11px]
+              font-bold
+              tracking-wide
+              text-gray-900
+              transition-all
+              duration-300
+              hover:bg-[#e9502e]
+              hover:text-white
+            "
+          >
+            FIND PROPERTY
 
-            <a
-              href="#projects"
+            <ChevronRight
+              size={16}
               className="
-                group
-                flex
-                items-center
-                gap-3
-                bg-white
-                px-5
-                py-3.5
-                text-[11px]
-                font-semibold
-                text-gray-900
-                transition-all
-                duration-300
-                hover:bg-[#e95b3e]
-                hover:text-white
+                transition-transform
+                group-hover:translate-x-1
               "
-            >
-              FIND PROPERTY
-
-              <ChevronRight
-                size={16}
-                className="
-                  transition-transform
-                  duration-300
-                  group-hover:translate-x-1
-                "
-              />
-
-            </a>
-
-            <a
-              href="#about"
-              className="
-                group
-                flex
-                items-center
-                gap-2
-                text-xs
-                text-white/90
-                transition-colors
-                hover:text-orange-400
-              "
-            >
-              DISCOVER MORE
-
-              <MoveUpRight
-                size={15}
-                className="
-                  transition-transform
-                  duration-300
-                  group-hover:-translate-y-1
-                  group-hover:translate-x-1
-                "
-              />
-
-            </a>
-
-          </div>
-
+            />
+          </a>
         </div>
-
       </div>
 
-      {/* Slider Controls */}
+      {/* Right Side Feature Label */}
       <div className="
         absolute
-        bottom-28
-        left-5
-        z-20
-        flex
-        w-[calc(100%-40px)]
-        max-w-115
-        flex-col
-        gap-4
-
-        sm:left-8
-
-        md:bottom-8
-        md:left-10
-
-        lg:left-16
+        right-[12%]
+        top-[43%]
+        hidden
+        -translate-y-1/2
+        items-center
+        gap-3
+        rounded-full
+        bg-black/30
+        px-5 py-3
+        text-xs
+        backdrop-blur-sm
+        md:flex
       ">
+        <span className="
+          h-2 w-2
+          rounded-full
+          bg-[#e9502e]
+        " />
 
-        <div className="flex items-center gap-5">
-
-          {/* Previous Button */}
-          <button
-            type="button"
-            onClick={prevSlide}
-            aria-label="Previous slide"
-            className="
-              flex
-              h-9
-              w-9
-              shrink-0
-              items-center
-              justify-center
-              rounded-full
-              border
-              border-white/50
-              transition-all
-              duration-300
-              hover:border-orange-500
-              hover:bg-orange-600
-            "
-          >
-            <ArrowLeft size={16} />
-          </button>
-
-          {/* Slider Indicators */}
-          <div className="flex flex-1 gap-2">
-
-            {slides.map((slide, index) => (
-              <button
-                key={slide.category}
-                type="button"
-                onClick={() => setActiveSlide(index)}
-                aria-label={`Go to slide ${index + 1}`}
-                aria-current={
-                  activeSlide === index ? "true" : undefined
-                }
-                className="
-                  h-1
-                  flex-1
-                  overflow-hidden
-                  rounded-full
-                  bg-white/30
-                "
-              >
-                <span
-                  className={`
-                    block
-                    h-full
-                    transition-all
-                    duration-500
-
-                    ${
-                      activeSlide === index
-                        ? "w-full bg-white"
-                        : "w-0"
-                    }
-                  `}
-                />
-              </button>
-            ))}
-
-          </div>
-
-          {/* Next Button */}
-          <button
-            type="button"
-            onClick={nextSlide}
-            aria-label="Next slide"
-            className="
-              flex
-              h-9
-              w-9
-              shrink-0
-              items-center
-              justify-center
-              rounded-full
-              border
-              border-white/50
-              transition-all
-              duration-300
-              hover:border-orange-500
-              hover:bg-orange-600
-            "
-          >
-            <ArrowRight size={16} />
-          </button>
-
-        </div>
-
-        {/* Slider Description */}
-        <p className="
-          max-w-md
-          text-center
-          text-xs
-          leading-5
-          text-white/80
-        ">
-          Unlock the potential of real estate with strategic insights,
-          innovative solutions, and exceptional service.
-        </p>
-
+        {currentSlide.tag}
       </div>
 
+     
 {/* Book a Consultation Card */}
 
 <div
   className="
     absolute
-    -bottom-8
+    -bottom-13
     left-1/2
     z-30
-    flex
-    h-16.25
-    w-[calc(100%-32px)]
-    max-w-105
+    w-[calc(100%-40px)]
+    max-w-81.25
     -translate-x-1/2
-    items-center
-    gap-0
     overflow-hidden
-    border-0
-    bg-transparent
-    shadow-none
+    rounded-md
+    bg-[#eeeeef]
+    shadow-[0_12px_30px_rgba(0,0,0,0.12)]
 
-    md:-bottom-17.5
+    md:-bottom-11.25
     md:left-auto
-    md:right-[0%]
-    md:h-auto
-    md:w-61.25
+    md:right-[6%]
+    md:w-81.25
     md:max-w-none
     md:translate-x-0
-    md:flex-col
-    md:items-center
-    md:overflow-visible
   "
 >
-  {/* Consultant Image */}
-  <img
-    src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=85"
-    alt="Real estate consultant"
-    className="
-      order-1
-      h-16.25
-      w-16.25
-      shrink-0
-      object-cover
-      object-top
-      shadow-none
-
-      md:order-2
-      md:h-35.75
-      md:w-26.5
-      md:self-center
-    "
-  />
-
-  {/* Consultation Button */}
+  {/* Orange Header */}
   <a
     href="#contact"
     className="
-      order-2
-      my-auto
       flex
-      h-13
-      flex-1
+      h-12.5
+      w-full
       items-center
       justify-center
-      gap-2
-      bg-[#e95b3e]
-      px-2
-      text-center
-      text-[10px]
+      gap-3
+      bg-[#d94b30]
+      text-sm
       font-semibold
-      tracking-wide
       text-white
-      shadow-none
-      transition-all
-      duration-300
-      hover:bg-orange-700
-
-      md:order-1
-      md:my-0
-      md:h-13
-      md:w-full
-      md:flex-none
+      transition-colors
+      hover:bg-[#c94128]
     "
   >
-    <Phone size={13} className="shrink-0" />
-    <span className="whitespace-nowrap">
-      Book a Consultation
-    </span>
+    <Phone size={16} />
+    <span>Book a Consultation</span>
   </a>
+
+  {/* Consultant Information */}
+  <div className="
+    flex
+    items-center
+    gap-4
+    bg-[#eeeeef]
+    p-4
+    sm:p-4
+  ">
+    {/* Consultant Image */}
+    <img
+      src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=85"
+      alt="David Warner"
+      className="
+        h-30
+        w-25
+        shrink-0
+        rounded-sm
+        object-cover
+        object-top
+      "
+    />
+
+    {/* Consultant Details */}
+    <div className="min-w-0 flex-1">
+      <h3 className="
+        text-base
+        font-semibold
+        text-[#e9502e]
+      ">
+        David Warner
+      </h3>
+
+      <p className="
+        mt-1
+        text-sm
+        leading-5
+        text-gray-600
+      ">
+        Senior advisor
+      </p>
+
+      <p className="
+        mt-3
+        text-sm
+        font-semibold
+        text-[#e9502e]
+      ">
+        Available Today
+      </p>
+    </div>
+  </div>
 </div>
-
-
 
     </section>
   );
 }
 
 export default Hero;
+
+
+
