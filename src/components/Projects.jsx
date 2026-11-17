@@ -2,15 +2,15 @@
 import { useState, useEffect } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
-function Projects() {
-  // Golden Horizon Villa slideshow images
-  const villaImages = [
-    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1000&q=85",
-    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1000&q=85",
-    "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1000&q=85",
-    "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=1000&q=85",
-  ];
+// Golden Horizon Villa slideshow images
+const villaImages = [
+  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1000&q=85",
+  "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1000&q=85",
+  "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1000&q=85",
+  "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=1000&q=85",
+];
 
+function Projects() {
   const [activeImage, setActiveImage] = useState(0);
 
   // Automatically change image every 4 seconds
