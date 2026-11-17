@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 
 import {
@@ -42,8 +41,6 @@ const slides = [
 function Hero() {
   const [activeSlide, setActiveSlide] = useState(0);
 
-  const currentSlide = slides[activeSlide];
-
   // Automatic slider
   useEffect(() => {
     const timer = setInterval(() => {
@@ -65,23 +62,25 @@ function Hero() {
     );
   };
 
+  const currentSlide = slides[activeSlide];
+
   return (
     <section
-      id="home"
-      className="
-        relative isolate z-20
-        w-full
-        min-h-190
-        sm:min-h-185
-        lg:min-h-155
-        xl:min-h-165
-        overflow-visible
-        bg-[#21130f]
-        text-white
-      "
-    >
-      {/* BACKGROUND IMAGE SLIDER */}
+  id="home"
+  className="
+    relative
+    z-20
+    isolate
+    mb-0
+    overflow-visible
+    bg-[#d9d9db]
+    text-white
+    min-h-180
+    md:min-h-195
+  "
+>
 
+      {/* Background Image Slider */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
 
         {slides.map((slide, index) => (
@@ -93,11 +92,11 @@ function Hero() {
               absolute inset-0
               h-full w-full
               object-cover
-              object-[62%_center]
-              md:object-center
+              object-center
               transition-all
               duration-1500
               ease-in-out
+
               ${
                 activeSlide === index
                   ? "scale-100 opacity-100"
@@ -108,102 +107,86 @@ function Hero() {
         ))}
 
         {/* Dark Overlay */}
-
         <div className="
           absolute inset-0
           bg-linear-to-r
-          from-black/75
-          via-black/40
-          to-black/15
+          from-black/70
+          via-black/35
+          to-black/10
         " />
 
         <div className="
           absolute inset-0
           bg-linear-to-t
-          from-black/55
+          from-black/40
           via-transparent
-          to-black/25
+          to-black/20
         " />
 
       </div>
 
-      {/* MAIN HERO CONTENT */}
-
+      {/* Main Hero Content */}
       <div className="
         relative
         mx-auto
         flex
-        min-h-190
-        max-w-[1600px]
+        min-h-180
+        max-w-375
         items-center
         px-5
-        pt-24
-        pb-52
+        pb-40
+        pt-28
 
-        sm:min-h-85
         sm:px-8
-        sm:pt-28
-        sm:pb-48
 
-        lg:min-h-155
-        lg:px-12
-        lg:py-24
-        lg:pb-28
+        md:min-h-195
+        md:px-10
+        md:pb-0
+        md:pt-0
 
-        xl:min-h-165
-        xl:px-16
+        lg:px-16
       ">
 
-        <div className="w-full max-w-170">
+        <div className="w-full max-w-2xl">
 
-          {/* CATEGORY */}
-
-          <div className="mb-5 flex items-center gap-3 sm:mb-6">
+          {/* Category */}
+          <div className="mb-6 flex items-center gap-3">
 
             <span className="h-px w-8 bg-orange-500" />
 
-            <span className="
-              text-[11px]
-              tracking-[0.15em]
-              text-white/90
-              sm:text-xs
-            ">
+            <span className="text-xs tracking-wider text-white/90">
               {currentSlide.category}
             </span>
 
           </div>
 
-          {/* HEADING */}
-
+          {/* Heading */}
           <h1
             key={currentSlide.title}
             className="
-              max-w-162.5
-              text-[42px]
+              max-w-2xl
+              text-4xl
               font-light
               leading-[1.08]
               tracking-tight
               transition-all
               duration-700
 
-              min-[400px]:text-5xl
-              sm:text-6xl
+              sm:text-5xl
               md:text-7xl
-              lg:text-[68px]
-              xl:text-[78px]
-              2xl:text-[84px]
+              lg:text-[82px]
             "
           >
             {currentSlide.title}
+
             <span className="text-orange-400">.</span>
+
           </h1>
 
-          {/* TAG */}
-
-          <div className="mt-5 sm:mt-7">
+          {/* Tag */}
+          <div className="mt-7">
 
             <span className="
-              inline-block
               border
               border-white/40
               bg-black/20
@@ -218,40 +201,25 @@ function Hero() {
 
           </div>
 
-          {/* DESCRIPTION */}
-
+          {/* Description */}
           <p className="
-            mt-5
-            max-w-105
-            text-[13px]
+            mt-7
+            max-w-md
+            text-sm
             leading-6
             text-white/85
-
-            sm:mt-7
-            sm:text-sm
-            sm:leading-7
           ">
             {currentSlide.description}
           </p>
 
-          {/* HERO BUTTONS */}
-
-          <div className="
-            mt-7
-            flex
-            flex-wrap
-            items-center
-            gap-4
-
-            sm:mt-9
-            sm:gap-6
-          ">
+          {/* Hero Buttons */}
+          <div className="mt-10 flex flex-wrap items-center gap-5">
 
             <a
               href="#projects"
               className="
                 group
-                inline-flex
+                flex
                 items-center
                 gap-3
                 bg-white
@@ -264,8 +232,6 @@ function Hero() {
                 duration-300
                 hover:bg-[#e95b3e]
                 hover:text-white
-                sm:px-6
-                sm:py-4
               "
             >
               FIND PROPERTY
@@ -278,20 +244,20 @@ function Hero() {
                   group-hover:translate-x-1
                 "
               />
+
             </a>
 
             <a
               href="#about"
               className="
                 group
-                inline-flex
+                flex
                 items-center
                 gap-2
-                text-[11px]
+                text-xs
                 text-white/90
                 transition-colors
                 hover:text-orange-400
-                sm:text-xs
               "
             >
               DISCOVER MORE
@@ -305,6 +271,7 @@ function Hero() {
                   group-hover:translate-x-1
                 "
               />
+
             </a>
 
           </div>
@@ -313,32 +280,29 @@ function Hero() {
 
       </div>
 
-      {/* SLIDER CONTROLS */}
-
+      {/* Slider Controls */}
       <div className="
         absolute
-        bottom-30
+        bottom-28
         left-5
         z-20
         flex
         w-[calc(100%-40px)]
         max-w-115
         flex-col
-        gap-3
+        gap-4
 
         sm:left-8
-        sm:bottom-30
 
-        lg:bottom-8
-        lg:left-12
+        md:bottom-8
+        md:left-10
 
-        xl:left-16
+        lg:left-16
       ">
 
-        <div className="flex items-center gap-4 sm:gap-5">
+        <div className="flex items-center gap-5">
 
-          {/* PREVIOUS */}
-
+          {/* Previous Button */}
           <button
             type="button"
             onClick={prevSlide}
@@ -362,8 +326,7 @@ function Hero() {
             <ArrowLeft size={16} />
           </button>
 
-          {/* INDICATORS */}
-
+          {/* Slider Indicators */}
           <div className="flex flex-1 gap-2">
 
             {slides.map((slide, index) => (
@@ -389,6 +352,7 @@ function Hero() {
                     h-full
                     transition-all
                     duration-500
+
                     ${
                       activeSlide === index
                         ? "w-full bg-white"
@@ -401,8 +365,7 @@ function Hero() {
 
           </div>
 
-          {/* NEXT */}
-
+          {/* Next Button */}
           <button
             type="button"
             onClick={nextSlide}
@@ -428,16 +391,13 @@ function Hero() {
 
         </div>
 
-        {/* SLIDER DESCRIPTION */}
-
+        {/* Slider Description */}
         <p className="
-          hidden
-          max-w-105
+          max-w-md
           text-center
           text-xs
           leading-5
           text-white/80
-          sm:block
         ">
           Unlock the potential of real estate with strategic insights,
           innovative solutions, and exceptional service.
@@ -445,151 +405,97 @@ function Hero() {
 
       </div>
 
-      {/* DESKTOP CONSULTATION CARD */}
+{/* Book a Consultation Card */}
 
-      <div className="
-        absolute
-        -bottom-18
-        right-[4%]
-        z-30
-        hidden
-        w-45
-        flex-col
-        overflow-hidden
-        bg-white
-        shadow-xl
+<div
+  className="
+    absolute
+    -bottom-8
+    left-1/2
+    z-30
+    flex
+    h-16.25
+    w-[calc(100%-32px)]
+    max-w-105
+    -translate-x-1/2
+    items-center
+    gap-0
+    overflow-hidden
+    border-0
+    bg-transparent
+    shadow-none
 
-        md:flex
-        lg:right-[5%]
-        lg:w-47.5
-        xl:w-50
-      ">
+    md:-bottom-17.5
+    md:left-auto
+    md:right-[0%]
+    md:h-auto
+    md:w-61.25
+    md:max-w-none
+    md:translate-x-0
+    md:flex-col
+    md:items-center
+    md:overflow-visible
+  "
+>
+  {/* Consultant Image */}
+  <img
+    src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=85"
+    alt="Real estate consultant"
+    className="
+      order-1
+      h-16.25
+      w-16.25
+      shrink-0
+      object-cover
+      object-top
+      shadow-none
 
-        {/* ORANGE BUTTON */}
+      md:order-2
+      md:h-35.75
+      md:w-26.5
+      md:self-center
+    "
+  />
 
-        <a
-          href="#contact"
-          className="
-            flex
-            h-13.5
-            w-full
-            items-center
-            justify-center
-            gap-2
-            bg-[#e95b3e]
-            px-2
-            text-[11px]
-            font-semibold
-            text-white
-            transition-all
-            duration-300
-            hover:bg-orange-700
-            lg:text-xs
-          "
-        >
-          <Phone size={15} />
-          <span>Book a Consultation</span>
-        </a>
+  {/* Consultation Button */}
+  <a
+    href="#contact"
+    className="
+      order-2
+      my-auto
+      flex
+      h-13
+      flex-1
+      items-center
+      justify-center
+      gap-2
+      bg-[#e95b3e]
+      px-2
+      text-center
+      text-[10px]
+      font-semibold
+      tracking-wide
+      text-white
+      shadow-none
+      transition-all
+      duration-300
+      hover:bg-orange-700
 
-        {/* CONSULTANT IMAGE */}
+      md:order-1
+      md:my-0
+      md:h-13
+      md:w-full
+      md:flex-none
+    "
+  >
+    <Phone size={13} className="shrink-0" />
+    <span className="whitespace-nowrap">
+      Book a Consultation
+    </span>
+  </a>
+</div>
 
-        <img
-          src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=85"
-          alt="Real estate consultant"
-          className="
-            h-36.25
-            w-full
-            object-cover
-            object-top
-            lg:h-38.75
-          "
-        />
 
-      </div>
-
-      {/* MOBILE CONSULTATION CARD */}
-
-      <div className="
-        absolute
-        bottom-4
-        left-1/2
-        z-30
-        flex
-        w-[calc(100%-32px)]
-        max-w-100
-        -translate-x-1/2
-        items-center
-        gap-3
-        border
-        border-white/20
-        bg-white/95
-        p-2.5
-        shadow-xl
-        backdrop-blur-md
-
-        md:hidden
-      ">
-
-        {/* CONSULTANT IMAGE */}
-
-        <img
-          src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=300&q=85"
-          alt="Real estate consultant"
-          className="
-            h-16.25
-            w-16.25
-            shrink-0
-            object-cover
-            object-top
-            min-[400px]:h-18
-            min-[400px]:w-18
-          "
-        />
-
-        {/* CONSULTATION CONTENT */}
-
-        <div className="min-w-0 flex-1">
-
-          <p className="text-[10px] text-gray-500 sm:text-xs">
-            Need help finding a property?
-          </p>
-
-          <h3 className="
-            mt-1
-            text-xs
-            font-semibold
-            text-gray-900
-            sm:text-sm
-          ">
-            Talk to our expert
-          </h3>
-
-          <a
-            href="#contact"
-            className="
-              mt-2
-              inline-flex
-              items-center
-              justify-center
-              gap-2
-              bg-[#e95b3e]
-              px-3
-              py-2
-              text-[10px]
-              font-semibold
-              text-white
-              transition
-              hover:bg-orange-700
-            "
-          >
-            <Phone size={12} />
-            Book a Consultation
-            <ArrowRight size={12} />
-          </a>
-
-        </div>
-
-      </div>
 
     </section>
   );
